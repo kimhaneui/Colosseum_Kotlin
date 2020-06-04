@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical"
+        tools:context=".ModifyActivity">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="토론 주제" />
+
+        <TextView
+            android:id="@+id/topicTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="댓글을 달 주제"
+            android:layout_marginTop="10dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선택한 진영"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/sideTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:text="진영 제목 나올 자리"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="의견 내용"
+            android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/myContentEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="5"
+            android:gravity="top"
+            android:hint="선택한 진영에 대한 논리를 말해주세요."/>
+
+        <Button
+            android:id="@+id/modifyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="의견 수정하기" />
+
+    </LinearLayout>
+</layout>
