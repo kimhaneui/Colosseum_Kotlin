@@ -50,9 +50,20 @@ public class ViewTopicActivity extends BaseActivity {
 //                댓글의 작성자 id는 받을수 있고 => GlobalData에서 내 id도 받을수 있다!
                 if (clickedReply.getWriter().getId()== GlobalData.loginUser.getId()){
 
+                    String mySideTitle = null;
+
+                    for (TopicSide ts : mTopic.getSideList()) {
+                        if (ts.getId() == mTopic.getMySideId()) {
+                            mySideTitle = ts.getTitle();
+                        }
+                    }
+
                     Intent myintent = new Intent(mContext,EditReplyActivity.class);
 //                    어느 댓글로 전달?
                     myintent.putExtra("replyId",clickedReply.getId());
+                    myintent.putExtra("topicTitle",mTopic.getTitle());
+                    myintent.putExtra("sideTitle",mySideTitle);
+                    myintent.putExtra("content",clickedReply.getContent());
                     startActivity(myintent);
 
                 }
