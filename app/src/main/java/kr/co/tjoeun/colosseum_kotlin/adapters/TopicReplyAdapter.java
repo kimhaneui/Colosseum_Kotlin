@@ -95,7 +95,9 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
         likecountBtn.setText(String.format("좋아요%,d",data.getLikeCount()));
         dislikecountBtn.setText(String.format("싫어요%,d",data.getDislikeCount()));
 
-        if (data.isMylike()){
+        replycountBtn.setText(String.format("답글 %,d",data.getReplyCount()));
+
+       if (data.isMylike()){
             likecountBtn.setBackgroundResource(R.drawable.red_border_box);
             likecountBtn.setTextColor(Color.RED);
         }
