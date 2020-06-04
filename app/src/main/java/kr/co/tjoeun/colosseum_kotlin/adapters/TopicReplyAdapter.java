@@ -90,6 +90,23 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
         likecountBtn.setText(String.format("좋아요%,d",data.getLikeCount()));
         dislikecountBtn.setText(String.format("싫어요%,d",data.getDislikeCount()));
 
+        if (data.isMylike()){
+            likecountBtn.setBackgroundResource(R.drawable.red_border_box);
+            likecountBtn.setTextColor(Color.RED);
+        }
+        else {
+            likecountBtn.setBackgroundResource(R.drawable.grey_border_box);
+            likecountBtn.setTextColor(mContext.getResources().getColor(R.color.grey));
+        }
+
+        if(data.isMyDislike()){
+            dislikecountBtn.setBackgroundResource(R.drawable.blue_border_box);
+            dislikecountBtn.setTextColor(Color.BLUE);
+        }
+        else{
+            dislikecountBtn.setBackgroundResource(R.drawable.grey_border_box);
+            dislikecountBtn.setTextColor(mContext.getResources().getColor(R.color.grey));
+        }
         likecountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
