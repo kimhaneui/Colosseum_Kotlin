@@ -69,6 +69,7 @@
                             android:id="@+id/voteToFirstSideBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/border_radious"
                             android:layout_marginTop="5dp"
                             android:text="투표 하기" />
 
@@ -107,6 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:background="@drawable/border_radious"
                             android:text="투표 하기" />
 
 
@@ -135,6 +137,7 @@
                 android:layout_gravity="right|bottom"
                 android:layout_marginBottom="15dp"
                 android:layout_marginRight="15dp"
+                android:background="@drawable/border_radious"
                 android:text="의견 남기기" />
 
         </FrameLayout>

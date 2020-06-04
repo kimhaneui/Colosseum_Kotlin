@@ -7,7 +7,14 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:orientation="vertical"
+        android:background="@color/white"
         tools:context=".ModifyActivity">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:src="@mipmap/app_logo_round"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,10 +59,16 @@
             android:gravity="top"
             android:hint="선택한 진영에 대한 논리를 말해주세요."/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
         <Button
             android:id="@+id/modifyBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_radious"
             android:text="의견 수정하기" />
 
     </LinearLayout>
