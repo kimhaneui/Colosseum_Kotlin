@@ -3,8 +3,13 @@ package kr.co.tjoeun.colosseum_kotlin
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_splash.*
+import kr.co.tjoeun.colosseum_kotlin.datas.GlobalData
+import kr.co.tjoeun.colosseum_kotlin.datas.User
 import kr.co.tjoeun.colosseum_kotlin.utils.ContextUtil
+import kr.co.tjoeun.colosseum_kotlin.utils.ServerUtil
+import org.json.JSONObject
 
 class SplashActivity : BaseActivity() {
 
@@ -22,9 +27,11 @@ class SplashActivity : BaseActivity() {
 
     override fun setValues() {
 
+        getMyInfoFromServer()
+
         Handler().postDelayed({
 
-            if (ContextUtil.isAutoLogin(mContext) && ContextUtil.getLoginUserToken(mContext) != "") {
+            if (GlobalData.loginUser !=null) {
                 val myIntent = Intent(mContext, MainActivity::class.java)
                 startActivity(myIntent)
             }
@@ -38,6 +45,25 @@ class SplashActivity : BaseActivity() {
 
         }, 2000)
 
+    }
+
+//    내정보 데이터를 서버에 요청
+    fun getMyInfoFromServer(){
+        if(ContextUtil.isAutoLogin(mContext)&&ContextUtil.getLoginUserToken(mContext)!=""){
+
+            ServerUtil.getRequestUserInfo(mContext,object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(json: JSONObject?) {
+                    Log.d("내정보",json.toString())
+
+                    val data = json!!.getJSONObject("data")
+                    val user = data.getJSONObject("user")
+
+                    val loginUser = User.getUserFromJson(user)
+                    GlobalData.loginUser = loginUser
+                }
+
+            })
+        }
     }
 
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 import kr.co.tjoeun.colosseum_kotlin.adapters.TopicReplyAdapter;
 import kr.co.tjoeun.colosseum_kotlin.databinding.ActivityViewTopicBinding;
 import kr.co.tjoeun.colosseum_kotlin.datas.Topic;
+import kr.co.tjoeun.colosseum_kotlin.datas.TopicReply;
 import kr.co.tjoeun.colosseum_kotlin.datas.TopicSide;
 import kr.co.tjoeun.colosseum_kotlin.utils.ServerUtil;
 
@@ -39,6 +41,12 @@ public class ViewTopicActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
+        binding.replyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TopicReply clickedReply = mTopic.getReplyList().get(position);
+            }
+        });
         binding.replyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
