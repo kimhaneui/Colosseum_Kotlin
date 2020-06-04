@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,10 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
         TextView sideTxt = row.findViewById(R.id.sideTxt);
         TextView createdAtTxt = row.findViewById(R.id.createdAtTxt);
 
+        Button replycountBtn = row.findViewById(R.id.replycountBtn);
+        Button likecountBtn = row.findViewById(R.id.likecountBtn);
+        Button dislikecountBtn = row.findViewById(R.id.dislikecountBtn);
+
         TopicReply data = mList.get(position);
 
         contentTxt.setText(data.getContent());
@@ -75,7 +80,12 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
 //        언제 댓글을 남겼는지 표시. => 의견에 있는 기능 활용
         createdAtTxt.setText(data.getFormattedTimeAgo());
 
-//        data.getcre
+
+//        좋아요 싫어요 갯수
+        likecountBtn.setText(String.format("좋아요%,d",data.getLikeCount()));
+        dislikecountBtn.setText(String.format("좋아요%,d",data.getDislikeCount()));
+
+
 
         return row;
     }
