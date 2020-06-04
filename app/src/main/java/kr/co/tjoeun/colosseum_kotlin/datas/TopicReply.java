@@ -17,6 +17,17 @@ public class TopicReply {
     private Calendar createdAt = Calendar.getInstance(); // 작성 일시 기록
     private  int likeCount;
     private int dislikeCount;
+    private  int replyCount;
+
+
+
+    public int getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(int replyCount) {
+        this.replyCount = replyCount;
+    }
 
     public int getLikeCount() {
         return likeCount;
@@ -93,6 +104,8 @@ public class TopicReply {
             tr.dislikeCount=jsonObject.getInt("dislike_count");
             tr.isMylike=jsonObject.getBoolean("my_like");
             tr.isMyDislike=jsonObject.getBoolean("my_dislike");
+
+            tr.replyCount = jsonObject.getInt("reply_count");
 
         } catch (JSONException e) {
             e.printStackTrace();
