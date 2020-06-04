@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import kr.co.tjoeun.colosseum_kotlin.adapters.TopicReplyAdapter;
 import kr.co.tjoeun.colosseum_kotlin.databinding.ActivityViewTopicBinding;
+import kr.co.tjoeun.colosseum_kotlin.datas.GlobalData;
 import kr.co.tjoeun.colosseum_kotlin.datas.Topic;
 import kr.co.tjoeun.colosseum_kotlin.datas.TopicReply;
 import kr.co.tjoeun.colosseum_kotlin.datas.TopicSide;
@@ -45,6 +46,16 @@ public class ViewTopicActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TopicReply clickedReply = mTopic.getReplyList().get(position);
+
+//                댓글의 작성자 id는 받을수 있고 => GlobalData에서 내 id도 받을수 있다!
+                if (clickedReply.getWriter().getId()== GlobalData.loginUser.getId()){
+
+                    Intent myintent = new Intent(mContext,EditReplyActivity.class);
+//                    어느 댓글로 전달?
+                    myintent.putExtra("replyId",clickedReply.getId());
+                    startActivity(myintent);
+
+                }
             }
         });
         binding.replyBtn.setOnClickListener(new View.OnClickListener() {
