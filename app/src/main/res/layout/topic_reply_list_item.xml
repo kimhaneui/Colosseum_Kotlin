@@ -26,7 +26,6 @@
                     android:text="반대"
                     android:textColor="#0000FF"/>
 
-
                 <TextView
                     android:id="@+id/writerNickNameTxt"
                     android:layout_width="wrap_content"
