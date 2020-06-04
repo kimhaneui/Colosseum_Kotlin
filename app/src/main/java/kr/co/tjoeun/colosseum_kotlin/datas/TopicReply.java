@@ -15,6 +15,44 @@ public class TopicReply {
     private String content;
     private User writer;
     private Calendar createdAt = Calendar.getInstance(); // 작성 일시 기록
+    private  int likeCount;
+    private int dislikeCount;
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public int getDislikeCount() {
+        return dislikeCount;
+    }
+
+    public void setDislikeCount(int dislikeCount) {
+        this.dislikeCount = dislikeCount;
+    }
+
+    public boolean isMylike() {
+        return isMylike;
+    }
+
+    public void setMylike(boolean mylike) {
+        isMylike = mylike;
+    }
+
+    public boolean isMyDislike() {
+        return isMyDislike;
+    }
+
+    public void setMyDislike(boolean myDislike) {
+        isMyDislike = myDislike;
+    }
+
+    private  boolean isMylike;
+    private  boolean isMyDislike;
+
 
     public static TopicReply getTopicReplyFromJson(JSONObject jsonObject) {
         TopicReply tr = new TopicReply();
@@ -51,6 +89,10 @@ public class TopicReply {
 //            현재 구해낸 시간에 더해준다.
             tr.createdAt.add(Calendar.HOUR_OF_DAY, gmtOffset);
 
+            tr.likeCount=jsonObject.getInt("like_count");
+            tr.dislikeCount=jsonObject.getInt("dislike_count");
+            tr.isMylike=jsonObject.getBoolean("my_like");
+            tr.isMyDislike=jsonObject.getBoolean("my_dislike");
 
         } catch (JSONException e) {
             e.printStackTrace();
