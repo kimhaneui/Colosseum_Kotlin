@@ -8,20 +8,23 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@mipmap/app_logo_round"/>
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center" >
+        android:orientation="vertical"
+       android:gravity="center">
         <TextView
+            android:id="@+id/activityTitleTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="액티비티 제목 자리"
+            android:text="액티비티 제목 자
+            리"
             android:textColor="@color/black"/>
-
     </LinearLayout>
     <ImageView
+        android:id="@+id/notificationImg"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@mipmap/app_logo_round"/>

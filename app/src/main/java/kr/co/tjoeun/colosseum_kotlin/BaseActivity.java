@@ -1,7 +1,11 @@
 package kr.co.tjoeun.colosseum_kotlin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -12,6 +16,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public Context mContext = this;
 
+    public TextView activityTitletxt;
+    public ImageView notificationImg;
+
     public abstract void setupEvents();
     public abstract void setValues();
 
@@ -19,6 +26,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCustomActionBar();
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
+        activityTitletxt.setText(title);
+
     }
 
     public void setCustomActionBar(){
@@ -30,6 +44,19 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             Toolbar toolbar = (Toolbar) getSupportActionBar().getCustomView().getParent();
             toolbar.setContentInsetsAbsolute(0,0);
+
+            View customActionView = getSupportActionBar().getCustomView();
+            activityTitletxt=customActionView.findViewById(R.id.activityTitleTxt);
+            notificationImg = customActionView.findViewById(R.id.notificationImg);
+
+            notificationImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent myintent = new Intent(mContext,NotificationActivity.class);
+                    startActivity(myintent);
+                }
+            });
+            setTitle("Toron App");
         }
     }
 
