@@ -3,31 +3,39 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     <ImageView
         android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@mipmap/app_logo_round"/>
+        android:layout_height="40dp"/>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
        android:gravity="center">
+
         <TextView
             android:id="@+id/activityTitleTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="액티비티 제목 자
-            리"
+            android:text="액티비티 제목 자리"
+            android:visibility="gone"
             android:textColor="@color/black"/>
+        <ImageView
+            android:id="@+id/logoImg"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:src="@drawable/title"/>
+
     </LinearLayout>
     <ImageView
         android:id="@+id/notificationImg"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/app_logo_round"/>
+        android:scaleType="centerCrop"
+        android:layout_margin="10dp"
+        android:src="@drawable/bluebell"/>
 
 
 </LinearLayout>

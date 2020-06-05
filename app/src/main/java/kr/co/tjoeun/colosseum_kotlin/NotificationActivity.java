@@ -3,6 +3,7 @@ package kr.co.tjoeun.colosseum_kotlin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class NotificationActivity extends BaseActivity {
 
@@ -22,6 +23,8 @@ public class NotificationActivity extends BaseActivity {
 
     @Override
     public void setValues() {
+
+        notificationImg.setVisibility(View.GONE);
 
     }
 }

@@ -18,6 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public TextView activityTitletxt;
     public ImageView notificationImg;
+    public ImageView logoImg;
 
     public abstract void setupEvents();
     public abstract void setValues();
@@ -30,7 +31,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void setTitle(CharSequence title) {
+
         super.setTitle(title);
+        activityTitletxt.setVisibility(View.VISIBLE);
+        logoImg.setVisibility(View.GONE);
         activityTitletxt.setText(title);
 
     }
@@ -48,6 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             View customActionView = getSupportActionBar().getCustomView();
             activityTitletxt=customActionView.findViewById(R.id.activityTitleTxt);
             notificationImg = customActionView.findViewById(R.id.notificationImg);
+            logoImg = customActionView.findViewById(R.id.logoImg);
 
             notificationImg.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -56,7 +61,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                     startActivity(myintent);
                 }
             });
-            setTitle("Toron App");
         }
     }
 
