@@ -1,8 +1,10 @@
 package kr.co.tjoeun.colosseum_kotlin;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +44,51 @@ public class ViewTopicActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
+        binding.replyListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final TopicReply tr = mTopic.getReplyList().get(position);
+                if(tr.getWriter().getId()==GlobalData.loginUser.getId()){
+                    AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+                    alert.setTitle("의견삭제");
+                    alert.setMessage("정말 이 의견을 삭제하시겠습니까? \n 달린 모든 댓글과 좋아요 등이 전부 삭제됩니다. ");
+                    alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            ServerUtil.deleteRequestReply(mContext, tr.getId(), new ServerUtil.JsonResponseHandler() {
+                                @Override
+                                public void onResponse(JSONObject json) {
+
+                                    Log.d("의견삭제",json.toString());
+                                    try {
+                                        int code = json.getInt("code");
+                                        if(code==200){
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(mContext,"의견 삭제에 성공했습니다",Toast.LENGTH_SHORT).show();
+                                                    getTopicFromServer();
+                                                }
+                                            });
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            });
+
+                        }
+                    });
+                    alert.setNegativeButton("취소",null);
+                    alert.show();
+                }
+                return true;
+            }
+        });
+
+
         binding.replyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -69,6 +116,7 @@ public class ViewTopicActivity extends BaseActivity {
                 }
             }
         });
+
         binding.replyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

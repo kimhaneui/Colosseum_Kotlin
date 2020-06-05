@@ -1,11 +1,14 @@
 package kr.co.tjoeun.colosseum_kotlin.datas;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
 
 public class TopicReply {
@@ -19,7 +22,8 @@ public class TopicReply {
     private int dislikeCount;
     private  int replyCount;
 
-
+//  대댓글 목록 지정
+    private List<TopicReply> replyList = new ArrayList<>();
 
     public int getReplyCount() {
         return replyCount;
@@ -106,6 +110,16 @@ public class TopicReply {
             tr.isMyDislike=jsonObject.getBoolean("my_dislike");
 
             tr.replyCount = jsonObject.getInt("reply_count");
+
+            if(!jsonObject.isNull("replies")){
+                JSONArray replies = jsonObject.getJSONArray("replies");
+
+                for (int i=0;i<replies.length();i++){
+                    JSONObject re_reply = replies.getJSONObject(i);
+                    TopicReply reReply = TopicReply.getTopicReplyFromJson(re_reply);
+                    tr.replyList.add(reReply);
+                }
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
