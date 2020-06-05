@@ -139,6 +139,15 @@
                 android:layout_marginRight="15dp"
                 android:background="@drawable/border_radious"
                 android:text="의견 남기기" />
+            <Button
+                android:id="@+id/userListBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/border_radious"
+                android:text="사용자 목록" />
 
         </FrameLayout>
 

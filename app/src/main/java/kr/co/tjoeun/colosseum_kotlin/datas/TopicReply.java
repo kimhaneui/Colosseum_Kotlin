@@ -15,6 +15,7 @@ public class TopicReply {
 
     private int id;
     private int side_id;
+    private TopicSide selectedSide;
     private String content;
     private User writer;
     private Calendar createdAt = Calendar.getInstance(); // 작성 일시 기록
@@ -75,6 +76,10 @@ public class TopicReply {
         try {
             tr.id = jsonObject.getInt("id");
             tr.side_id = jsonObject.getInt("side_id");
+
+            JSONObject selected_side = jsonObject.getJSONObject("selected_side");
+            tr.selectedSide = TopicSide.getTopicSideFromJson(selected_side);
+
             tr.content = jsonObject.getString("content");
 
 
@@ -180,8 +185,14 @@ public class TopicReply {
         this.side_id = side_id;
     }
 
+    public TopicSide getSelectedSide() {
+        return selectedSide;
+    }
 
-    //    현재 시간 대비 작성시간이 얼마나 오래되었나를 체크해서, 다른 양식으로 출력
+    public void setSelectedSide(TopicSide selectedSide) {
+        this.selectedSide = selectedSide;
+    }
+//    현재 시간 대비 작성시간이 얼마나 오래되었나를 체크해서, 다른 양식으로 출력
 
     public String getFormattedTimeAgo() {
 //        1. 작성한 시간(!)으로부터 현재시간(!)이 얼마나 흘렀나? => 그 둘의 차이

@@ -142,6 +142,62 @@ public class ServerUtil {
 
 
     }
+    public static void postRequestUserCheck(Context context, int userId, final JsonResponseHandler handler) {
+
+//        안드로이드 앱이 클라이언트로써의 역할을 하도록 도와주는 객체.
+        OkHttpClient client = new OkHttpClient();
+
+//        POST 메쏘드는 FormBody에 필요한 데이터를 첨부.
+        RequestBody requestBody = new FormBody.Builder()
+                .add("user_id", userId+"")
+                .build();
+
+//        API에 접근하기 위한 정보가 적혀있는 Request 변수를 만들자.
+//        /user + POST => http://아이피주소/user + POST
+
+        Request request = new Request.Builder()
+                .url(BASE_URL + "/user_check")
+                .post(requestBody)
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))  // 헤더가 필요하다면 이 시점에서 첨부.
+                .build();
+
+
+//        client 를 이용해서 실제로 서버에 접근
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("서버연결실패", "로그인 기능 실패");
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+                String body = response.body().string();
+
+                Log.d("서버연결성공", body);
+
+//                String body 를 JSONObject 로 변환.
+
+                try {
+                    JSONObject jsonObject = new JSONObject(body);
+
+//                    변환된 JSON을 액티비티에 전달 + 처리 실행.
+                    if (handler != null) {
+                        handler.onResponse(jsonObject);
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
+    }
     public static void postRequestReplyLike(Context context, int replyId,boolean isLike, final JsonResponseHandler handler) {
 
 //        안드로이드 앱이 클라이언트로써의 역할을 하도록 도와주는 객체.
@@ -251,6 +307,55 @@ public class ServerUtil {
                     e.printStackTrace();
                 }
 
+
+            }
+        });
+
+
+    }
+    public static void getRequestUserList(Context context, final JsonResponseHandler handler) {
+
+//        안드로이드 앱이 클라이언트로써의 역할을 하도록 도와주는 객체.
+        OkHttpClient client = new OkHttpClient();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + "/user").newBuilder();
+//        urlBuilder.addEncodedQueryParameter("type", checkType);
+//        urlBuilder.addEncodedQueryParameter("value", input);
+
+        String completeUrl = urlBuilder.build().toString();
+        Log.d("완성된URL", completeUrl);
+
+        Request request = new Request.Builder()
+                .url(completeUrl)
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
+                .get()
+                .build();
+
+
+//        client 를 이용해서 실제로 서버에 접근
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+                String body = response.body().string();
+
+                try {
+                    JSONObject json = new JSONObject(body);
+
+                    if (handler != null) {
+                        handler.onResponse(json);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Log.d("body", body);
 
             }
         });
