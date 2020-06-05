@@ -52,6 +52,10 @@ public class NotificationAdapter extends ArrayAdapter<Notification> {
         if (row == null) {
             row = inf.inflate(R.layout.notification_list_item, null);
         }
+        TextView notiTitleTxt = row.findViewById(R.id.notiTitleTxt);
+        Notification data = mList.get(position);
+
+        notiTitleTxt.setText(data.getTitle());
        return row;
     }
 }

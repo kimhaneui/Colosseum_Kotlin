@@ -1,6 +1,7 @@
 package kr.co.tjoeun.colosseum_kotlin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,18 +14,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.co.tjoeun.colosseum_kotlin.adapters.NotificationAdapter;
+import kr.co.tjoeun.colosseum_kotlin.databinding.ActivityNotificationBinding;
 import kr.co.tjoeun.colosseum_kotlin.datas.Notification;
 import kr.co.tjoeun.colosseum_kotlin.utils.ServerUtil;
 
 public class NotificationActivity extends BaseActivity {
 
     List<Notification> notificationList = new ArrayList<>();
+    NotificationAdapter myNotiAdapter;
 
+    ActivityNotificationBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_notification);
         setupEvents();
         setValues();
     }
@@ -37,6 +42,9 @@ public class NotificationActivity extends BaseActivity {
     public void setValues() {
 
         notificationImg.setVisibility(View.GONE);
+
+        myNotiAdapter = new NotificationAdapter(mContext,R.layout.notification_list_item,notificationList);
+        binding.notiListView.setAdapter(myNotiAdapter);
 
     }
 
@@ -63,6 +71,12 @@ public class NotificationActivity extends BaseActivity {
                     }
 //                    notifydataSetChange 필요
 
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            myNotiAdapter.notifyDataSetChanged();
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
