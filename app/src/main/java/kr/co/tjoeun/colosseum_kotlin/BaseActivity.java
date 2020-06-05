@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         super.setTitle(title);
         activityTitletxt.setVisibility(View.VISIBLE);
-        logoImg.setVisibility(View.GONE);
+//        logoImg.setVisibility(View.GONE);
         activityTitletxt.setText(title);
 
     }
@@ -52,7 +52,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             View customActionView = getSupportActionBar().getCustomView();
             activityTitletxt=customActionView.findViewById(R.id.activityTitleTxt);
             notificationImg = customActionView.findViewById(R.id.notificationImg);
-            logoImg = customActionView.findViewById(R.id.logoImg);
 
             notificationImg.setOnClickListener(new View.OnClickListener() {
                 @Override
