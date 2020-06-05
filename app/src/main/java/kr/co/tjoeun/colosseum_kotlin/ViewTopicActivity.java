@@ -116,11 +116,25 @@ public class ViewTopicActivity extends BaseActivity {
                 }
             }
         });
+        binding.profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(mContext,profileActivity.class);
+                startActivity(myintent);
+            }
+        });
     binding.userListBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent myintent = new Intent(mContext,UserListActivity.class);
             startActivity(myintent);
+        }
+    });
+    binding.findTopicBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent myIntent = new Intent(mContext,MainActivity.class);
+            startActivity(myIntent);
         }
     });
         binding.replyBtn.setOnClickListener(new View.OnClickListener() {

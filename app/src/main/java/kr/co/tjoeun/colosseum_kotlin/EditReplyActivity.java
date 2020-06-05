@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,20 @@ public class EditReplyActivity extends BaseActivity {
     @Override
     public void setupEvents() {
 
+        binding.findTopicBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(mContext,MainActivity.class);
+                startActivity(myintent);
+            }
+        });
+        binding.userListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(mContext,UserListActivity.class);
+                startActivity(myintent);
+            }
+        });
         binding.postBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -34,7 +34,7 @@ public class UserAdapter extends ArrayAdapter<User> {
         View row = convertView;
 
         if (row == null) {
-            row = inf.inflate(R.layout.activity_user_list, null);
+            row = inf.inflate(R.layout.user_list_item, null);
         }
 
         TextView nickNameTxt = row.findViewById(R.id.nickNameTxt);

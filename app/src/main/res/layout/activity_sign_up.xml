@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        tools:context=".SignUpActivity">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/app_logo_round"/>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이메일" />
+
+            <FrameLayout
+                android:layout_margin="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+
+                    android:id="@+id/emailEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="이메일 양식으로 입력"
+                    android:inputType="textEmailAddress" />
+
+                <Button
+                    android:id="@+id/idCheckBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="중복확인"
+                    android:layout_gravity="right"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/idCheckResultTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중복 검사를 해주세요."
+                android:textColor="#A0A0A0" />
+
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/pwEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호 입력 (8자 이상)"
+                android:layout_marginTop="5dp"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/pwCheckResultTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호를 입력해주세요." />
+
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 확인"
+                android:layout_marginTop="20dp" />
+
+            <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/pwRepeatEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:hint="비밀번호를 다시 입력해주세요." />
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/pwRepeatCheckResultTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="비밀번호 확인을 입력해주세요." />
+
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닉네임"
+                android:layout_marginTop="20dp"/>
+
+            <FrameLayout
+                android:layout_margin="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/nickNameEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="닉네임 입력(한글 가능)"
+                    android:inputType="textEmailAddress" />
+
+                <Button
+                    android:id="@+id/nickNameCheckBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="중복확인"
+                    android:layout_gravity="right"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/nickNameCheckResultTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중복 검사를 해주세요."
+                android:textColor="#A0A0A0" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/signUpBtn"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="회원가입" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="#ffffff">
+            <ImageView
+                android:id="@+id/profileBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/person"/>
+            <ImageView
+                android:id="@+id/findTopicBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/find"/>
+            <ImageView
+                android:id="@+id/userListBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/people"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

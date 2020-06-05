@@ -1,16 +1,17 @@
 package kr.co.tjoeun.colosseum_kotlin;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import kr.co.tjoeun.colosseum_kotlin.adapters.TopicReplyAdapter;
+import kr.co.tjoeun.colosseum_kotlin.adapters.TopicReReplyAdapter;
 import kr.co.tjoeun.colosseum_kotlin.databinding.ActivityViewReplyBinding;
 import kr.co.tjoeun.colosseum_kotlin.datas.TopicReply;
 import kr.co.tjoeun.colosseum_kotlin.utils.ServerUtil;
@@ -22,7 +23,7 @@ public class ViewReplyActivity extends BaseActivity {
     int replyId = -1;
     TopicReply mReplyData;
 
-    TopicReplyAdapter tra;
+    TopicReReplyAdapter reReplyAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +34,36 @@ public class ViewReplyActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        binding.findTopicBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(mContext,MainActivity.class);
+                startActivity(myintent);
+            }
+        });
+        binding.userListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(mContext,UserListActivity.class);
+                startActivity(myintent);
+            }
+        });
         binding.replyPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String input = binding.replyEdt.getText().toString();
+
+                if (input.length()<10){
+                    Toast.makeText(mContext,"답글은 최소 10자 이상이여야 한다",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 ServerUtil.postRequestReReply(mContext, replyId, input, new ServerUtil.JsonResponseHandler() {
                     @Override
                     public void onResponse(JSONObject json) {
                         Log.d("대댓글응답",json.toString());
+
+                        getReplyDataServer();
                     }
                 });
             }
@@ -93,6 +116,10 @@ public class ViewReplyActivity extends BaseActivity {
         binding.contentTxt.setText(mReplyData.getContent());
 
         binding.sideTitleTxt.setText(mReplyData.getSelectedSide().getTitle());
+
+        reReplyAdapter  = new TopicReReplyAdapter(mContext,R.layout.topic_re_reply_list_item,mReplyData.getReplyList());
+        binding.replyListView.setAdapter(reReplyAdapter );
+        binding.replyEdt.setText("");
     }
 }
 

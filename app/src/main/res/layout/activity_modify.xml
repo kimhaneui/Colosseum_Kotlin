@@ -5,7 +5,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
         android:orientation="vertical"
         android:background="@color/white"
         tools:context=".ModifyActivity">
@@ -15,61 +14,98 @@
             android:layout_gravity="center"
             android:layout_marginBottom="50dp"
             android:src="@mipmap/app_logo_round"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="토론 주제" />
 
-        <TextView
-            android:id="@+id/topicTitleTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="댓글을 달 주제"
-            android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토론 주제" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/topicTitleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="댓글을 달 주제"
+                android:layout_marginTop="10dp"/>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="선택한 진영"
-            android:layout_marginTop="15dp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="선택한 진영"
+                android:layout_marginTop="15dp"/>
 
-        <TextView
-            android:id="@+id/sideTitleTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:textColor="@color/black"
-            android:text="진영 제목 나올 자리"
-            android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/sideTitleTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:text="진영 제목 나올 자리"
+                android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="의견 내용"
-            android:layout_marginTop="15dp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="의견 내용"
+                android:layout_marginTop="15dp"/>
 
-        <EditText
-            android:id="@+id/myContentEdt"
+            <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/myContentEdt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="5"
+                android:gravity="top"
+                android:hint="선택한 진영에 대한 논리를 말해주세요."/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/modifyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_radious"
+                android:layout_marginBottom="10dp"
+                android:text="의견 수정하기" />
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minLines="5"
-            android:gravity="top"
-            android:hint="선택한 진영에 대한 논리를 말해주세요."/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/modifyBtn"
+            android:layout_height="1dp"
+            android:background="#333333"/>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_radious"
-            android:text="의견 수정하기" />
-
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="#ffffff">
+            <ImageView
+                android:id="@+id/profileBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/person"/>
+            <ImageView
+                android:id="@+id/findTopicBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/find"/>
+            <ImageView
+                android:id="@+id/userListBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/people"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>

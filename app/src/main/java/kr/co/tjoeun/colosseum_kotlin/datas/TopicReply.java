@@ -223,5 +223,7 @@ public class TopicReply {
 
     }
 
-
+    public List<TopicReply> getReplyList() {
+        return replyList;
+    }
 }
