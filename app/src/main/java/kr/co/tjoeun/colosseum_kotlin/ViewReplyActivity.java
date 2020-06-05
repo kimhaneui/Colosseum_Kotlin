@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +33,18 @@ public class ViewReplyActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+        binding.replyPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = binding.replyEdt.getText().toString();
+                ServerUtil.postRequestReReply(mContext, replyId, input, new ServerUtil.JsonResponseHandler() {
+                    @Override
+                    public void onResponse(JSONObject json) {
+                        Log.d("대댓글응답",json.toString());
+                    }
+                });
+            }
+        });
 
     }
 
@@ -78,5 +91,8 @@ public class ViewReplyActivity extends BaseActivity {
     void setUiByReplyData(){
         binding.nickNameTxt.setText(mReplyData.getWriter().getNickName());
         binding.contentTxt.setText(mReplyData.getContent());
+
+        binding.sideTitleTxt.setText(mReplyData.getSelectedSide().getTitle());
     }
 }
+
