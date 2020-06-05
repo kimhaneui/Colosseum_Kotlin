@@ -36,12 +36,11 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
     List<TopicReply> mList;
     LayoutInflater inf;
 
-    public TopicReplyAdapter(@NonNull Context context, int resource, @NonNull List<TopicReply> objects, TopicSide[] sideArr) {
+    public TopicReplyAdapter(@NonNull Context context, int resource, @NonNull List<TopicReply> objects) {
         super(context, resource, objects);
         mContext = context;
         mList = objects;
         inf = LayoutInflater.from(mContext);
-        topicSideArr = sideArr;
     }
 
     @NonNull
@@ -68,24 +67,24 @@ public class TopicReplyAdapter extends ArrayAdapter<TopicReply> {
         writerNickNameTxt.setText(data.getWriter().getNickName());
 
 
-        int sideIndex = 0;
-        for (int i = 0; i < topicSideArr.length ; i++) {
-            if (topicSideArr[i].getId() == data.getSide_id()) {
-                sideIndex = i;
-            }
-        }
+//        int sideIndex = 0;
+//        for (int i = 0; i < topicSideArr.length ; i++) {
+//            if (topicSideArr[i].getId() == data.getSide_id()) {
+//                sideIndex = i;
+//            }
+//        }
+//
+//        if (sideIndex == 0) {
+//            sideTxt.setBackgroundResource(R.drawable.red_border_box);
+//            sideTxt.setTextColor(Color.RED);
+//
+//        }
+//        else {
+//            sideTxt.setBackgroundResource(R.drawable.blue_border_box);
+//            sideTxt.setTextColor(Color.BLUE);
+//        }
 
-        if (sideIndex == 0) {
-            sideTxt.setBackgroundResource(R.drawable.red_border_box);
-            sideTxt.setTextColor(Color.RED);
-
-        }
-        else {
-            sideTxt.setBackgroundResource(R.drawable.blue_border_box);
-            sideTxt.setTextColor(Color.BLUE);
-        }
-
-        sideTxt.setText(topicSideArr[sideIndex].getTitle());
+        sideTxt.setText(data.getSelectedSide().getTitle());
 
 //        언제 댓글을 남겼는지 표시. => 의견에 있는 기능 활용
         createdAtTxt.setText(data.getFormattedTimeAgo());
